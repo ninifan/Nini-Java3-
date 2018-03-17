@@ -1,0 +1,297 @@
+Nini JavaScript
+<html>
+    <head>
+        <title>
+            Nini JavaScript
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+        </script>
+    </head>
+    <style>
+                *{
+        font-size:20px;
+        font-weight: 700;
+
+        background-color: #e0e7ed;
+        font-family:Microsoft JhengHei;
+        }
+        .board{
+        left:150px;
+        top:100px;
+        position: fixed;
+        width: 400px;
+        text-align: center;
+        display: none;
+        color : white;  
+        }
+        #question{
+        background-color: #C2390D;
+        line-height: 100px;
+        height: 100px;
+        margin: 4px;
+        border: #F79D2D 3px solid;
+        border-radius:8px;
+        }
+        .answer{
+        margin: 4px;
+        border: #F79D2D 3px solid;
+        border-radius:8px;
+        background-color: #32B9B5;
+        line-height: 60px;
+        height: 60px;
+        }
+        #time-bar{
+        height: 8px;
+        background-color: grey;
+        width: 100px;
+        border-radius:10px;
+        }
+        .start-message{
+        width:400px;
+        position:fixed;
+        top:200px;
+        left:150px;
+        text-align: center;
+        color : black;
+        }
+        .pompom{
+        height:200px;
+        top: 400px;
+        }
+        .back{
+        position: fixed;
+        top:400px;
+        left:0px;
+        }
+        .chinese{
+        position: fixed;
+        top:400px;
+        left:100px;
+        }
+        .math{
+        position: fixed;
+        top:400px;
+        left:150px;
+        }
+        .history{
+        position: fixed;
+        top:400px;
+        left:200px;
+        }
+        .language_arts{
+        position: fixed;
+        top:400px;
+        left:250px;
+        }
+        .entertainment{
+        position: fixed;
+        top:400px;
+        left:300px;
+        }
+    </style>
+    <body>
+        <img class="pompom" src="https://vignette.wikia.nocookie.net/hellokitty/images/5/5c/Sanrio_Characters_Pompompurin--Muffin_Image002.png/revision/latest?cb=20170526003717">
+        <div class="board">
+        <div id="time-bar"></div>
+        <div id="question">「大蘋果」是哪一個城市的名稱？ </div>
+        <div class="answer" id="answer1" onclick="answerQuestion(1)">巴黎</div>
+        <div class="answer" id="answer2" onclick="answerQuestion(2)">紐約</div>
+        <div class="answer" id="answer3" onclick="answerQuestion(3)">東京</div>
+        <div class="answer" id="answer4" onclick="answerQuestion(4)">香港</div>
+
+        </div>
+        <div class="start-message">
+        <div>
+            娛樂，歷史，英文--最勁爆知識王，你準備好了嗎?
+        </div>
+        <button onclick="startGame()">start!!!!!</button>
+        </div>
+
+        <button class="chinese" onclick="chinese()">國文</button>
+        <button class="math" onclick="math()">數學</button>
+        <button class="history" onclick="history()">歷史</button>
+        <button class="language_arts" onclick="language_arts()">英文</button>
+        <button class="entertainment" onclick="entertainment()">娛樂</button>
+        <button class="back" onclick="back()">回上一頁</button>
+        <h1>
+            Nini 好讚!
+        </h1>
+    </body>
+    <script>
+                var correctAnswer = 0;
+        var questionIndex = 0; 
+        var score = 0;
+        var chineseAnswerList = [
+        ["東施效顰的顰是甚麼意思?","走路","把手放在心上","點頭","皺眉頭",4],
+        ["少小離家老大回?","身高無改體肉催","鄉音無改鬢毛催","兩岸袁聲提不住","朝辭白帝彩雲間",2],
+        ["下列何者成語無誤?","捕風捉影","發奮突強","久牛一貴","自立字強",1],["回上一頁","","","","",1,]]
+        var correctAnswer = 0;
+        var questionIndex = 0; 
+        var score = 0;
+        var topicStatus = 0;
+        var mathAnswerList = [
+        ["12*5=?","120","60","50","125",2],[
+            "下列何者不是線對稱圖形?","箏形","正方形","菱形","平行四邊形",4],
+        ["55+61=?","110","111","112","116",4,],["回上一頁","","","","",1,]]
+        var historyAnswerList = [
+        ["鄭成功在何地出生?","日本","台灣","中國","韓國",1],[
+            "荷蘭人統治台灣幾年?","18","32","38","37",3],[
+            "下列何者是虛構人物?","王昭君","西施","楊貴妃","貂蟬",4,
+            ],["回上一頁","","","","",1,]]
+        var language_artsAnswerList = [
+        ["鴨子的英文?","dog","duck","goose","frog",2],[
+            "芭樂英文?","guava","pineapple","apple","pear",1],[
+            "熊的英文?","deer","beer","bear","bee",3
+            ],["回上一頁","","","","",1,]]
+        var entertainmentAnswerList = [
+        ["吳宗憲的英文名子?","Jacky","Jack","Jason","Jim",1],[
+            "周杰倫的老婆?","蔡依林","林依晨","A-lin","昆凌",4],[
+            "下列何者是吳宗憲的老婆?","陳孝萱","張葳葳","吳珊儒","吳瑞軒",2,
+            ],["回上一頁","","","","",1,]
+        ]
+
+
+
+
+
+
+        hide_list();
+        function hide_list(){
+        $(".chinese").hide();
+        $(".math").hide();
+        $(".history").hide();
+        $(".language_arts").hide();
+        $(".entertainment").hide();
+        } 
+
+        function click_startgame(){
+            $(".science").show();
+        }
+        function show_list(){
+        $(".chinese").show();
+        $(".math").show();
+        $(".history").show();
+        $(".language_arts").show();
+        $(".entertainment").show();
+        }
+
+        setQuestion();
+
+        function setQuestion() {
+        
+        if(topicStatus == 1){
+                $("#question").html(chineseAnswerList[questionIndex][0]);
+            for (i = 1; i <5; i++) {
+                $("#answer" + i).html(chineseAnswerList[questionIndex][i]);
+            }
+                correctAnswer = chineseAnswerList[questionIndex][5];    
+                questionIndex += 1;
+        }
+        if(topicStatus == 2){
+            $("#question").html(mathAnswerList[questionIndex][0]);
+            for (i = 1; i <5; i++) {
+                $("#answer" + i).html(mathAnswerList[questionIndex][i]);
+            }
+                correctAnswer = mathAnswerList[questionIndex][5];    
+                questionIndex += 1;
+        }
+        
+        if(topicStatus == 3){
+            $("#question").html(historyAnswerList[questionIndex][0]);
+            for (i = 1; i <5; i++) {
+                $("#answer" + i).html(historyAnswerList[questionIndex][i]);
+            }
+                correctAnswer = historyAnswerList[questionIndex][5];    
+                questionIndex += 1;
+            
+        }
+        if(topicStatus == 4){
+        $("#question").html(language_artsAnswerList[questionIndex][0]);
+            for (i = 1; i <5; i++) {
+                $("#answer" + i).html(language_artsAnswerList[questionIndex][i]);
+            }
+                correctAnswer = language_artsAnswerList[questionIndex][5];    
+                questionIndex += 1;
+        }
+        if(topicStatus == 5){
+        $("#question").html(entertainmentAnswerList[questionIndex][0]);
+            for (i = 1; i <5; i++) {
+                $("#answer" + i).html(entertainmentAnswerList[questionIndex][i]);
+            }
+                correctAnswer = entertainmentAnswerList[questionIndex][5];    
+                questionIndex += 1;
+        }
+        
+        }
+
+
+
+        function answerQuestion(answerCode) {
+        if(answerCode==correctAnswer){
+            score = score + 33 ;
+            setQuestion(); 
+        } 
+        if(questionIndex==chineseAnswerList.length){
+            gameover();
+        }
+        }
+        function startGame(){
+        show_list();
+        setQuestion();
+        $(".start-message").hide();
+        }
+        function gameover() {
+        alert("遊戲結束! 恭喜你(妳)獲得: " + score + "分");
+        }
+
+
+
+
+        function chinese(){
+        topicStatus = 1;
+        $(".board").show();
+        setQuestion();
+        hide_button();
+        }
+        function math(){
+        topicStatus = 2;
+        $(".board").show();
+        setQuestion();
+        hide_button();
+        }
+        function history(){
+        topicStatus = 3;
+        $(".board").show();
+        hide_button();
+        setQuestion();
+        }
+        function language_arts(){
+        topicStatus = 4;
+        $(".board").show();
+        hide_button();
+        setQuestion();
+        }
+        function entertainment(){
+        topicStatus = 5;
+        $(".board").show();
+        hide_button();
+        setQuestion();
+        }
+        function hide_button()
+        {
+            $(".chinese").hide();
+        $(".math").hide();
+        $(".history").hide();
+        $(".language_arts").hide();
+        $(".entertainment").hide();
+        }
+        function back()
+        {
+        show_list();
+        $(".board").hide();
+        questionIndex = 0;
+        }
+    </script>
+
+</html>
