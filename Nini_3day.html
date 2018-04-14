@@ -1,0 +1,42 @@
+<html>
+    <head><meta charset=UTF-8></head>
+
+    <body>
+        <h1>帳號申請</h1>
+        <hr>
+        <form action="" method="POST">
+    暱稱:<input id="idCardName"> <br>
+    電子信箱: <input id="idEmail" placeholder="妳的電子郵件"> <br>
+    密碼: <input id="idPassword" placeholder="英文＆數字6~8個字"> <br>
+    確認密碼: <input id="idConfirmPassword" placeholder="在字輸入密碼">
+    生日：<br>
+    年: <input id="year" placeholder="西元年">月: <input id="month">日: <input id="day"> <br>
+
+    <!-- 因為CheckId裡面參數有idCardNumber.value所以可以知道input裡面的值 -->
+    <input type="button" value="驗證" onclick="checkIdName(idName.value),checkIdEmail(idEmail.value),checkIdPassword(idPassword.value),checkIdConfirmPassword.value),checkYear(year.value),checkMonth(month.value),checkDay(day.value),"></input>
+     </form>
+    </body>
+
+    <script>
+        function checkID(string){
+            re = /^[A-Z]{1}[0-9]{9}$/
+            // []　代表規則
+            // {} 輸入幾個字
+            // ^ 輸入的第一個位置
+            // $ 輸入的最後一個位置
+            if(re.test(string)){ 
+            alert("妳身分證驗證驗證正確");
+        } else {  alert("妳身份證字號驗證錯誤");  
+        }
+        }
+    </script>
+
+    <style>
+       h1{
+           text-align: center;
+       }
+       body {
+           text-align: center;
+       }
+    </style>
+</html>
