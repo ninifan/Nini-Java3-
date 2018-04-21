@@ -2,6 +2,13 @@
     <head><meta charset=UTF-8></head>
 
     <body>
+        <img src="https://78.media.tumblr.com/57cad5724af00e7b6e88be09a9617a71/tumblr_orb5gjD8871wrr920o1_250.gif">
+        <img src="https://s-media-cache-ak0.pinimg.com/originals/af/76/2d/af762d27e09c7b087b750eb8569a3aea.gif">
+        <img src="https://i.pinimg.com/originals/b0/e2/f6/b0e2f6706d0a27ef7ba5fad879a516ca.gif">
+        <img class="panda" src="http://3.bp.blogspot.com/-_X2piqaXWE0/ViiEhVs8faI/AAAAAAAADdk/vRvGuBjI3aI/s1600/5361.png">
+        <img class="cutie" src="http://line.banner.tw/line/animation/1343954/main.png">
+        <img class="dunno" src="https://78.media.tumblr.com/52b255fb53f00012583e195297621cdb/tumblr_oyi20zxMZD1rqn927o1_400.gif">
+
         <h1>帳號申請</h1>
         <hr>
         <form action="" method="POST">
@@ -13,11 +20,60 @@
     年: <input id="year" placeholder="西元年">月: <input id="month">日: <input id="day"> <br>
 
     <!-- 因為CheckId裡面參數有idCardNumber.value所以可以知道input裡面的值 -->
-    <input type="button" value="驗證" onclick="checkIdName(idName.value),checkIdEmail(idEmail.value),checkIdPassword(idPassword.value),checkIdConfirmPassword.value),checkYear(year.value),checkMonth(month.value),checkDay(day.value),"></input>
+    <input type="button" value="驗證" onclick="checkIdName(idCardName.value),checkIdEmail(idEmail.value),checkIdPassword(idPassword.value),checkIdConfirm(idConfirmPassword.value),checkYear(year.value),checkMonth(month.value),checkDay(day.value)"></input>
      </form>
     </body>
 
     <script>
+        function checkIdName(string) {
+            re = /^[A-Za-z]{4,8}$/
+            if(re.test(string)){ 
+                alert("妳名字驗證正確");
+            } else {  
+                alert("妳名字驗證錯誤");  
+            }
+        }
+        function checkIdPassword(string) {
+            re = /^[A-Za-z]{4,8}$/
+            if(re.test(string)){ 
+                alert("妳密碼驗證正確");
+            } else {  
+                alert("妳密碼驗證錯誤");  
+            }
+        }
+        function checkIdYear(string) {
+            re = /^[0-9]{4}&/
+            if(re.test(string)){ 
+                alert("妳出生年驗證正確");
+            } else {  
+                alert("妳出生年驗證錯誤");  
+            }
+        }
+        function checkIdMonth(stirng) {
+            re = /^[0-3]{2}$/
+            if(re.test(string)){ 
+                alert("妳出生月驗證正確");
+            } else {  
+                alert("妳出生月驗證錯誤");  
+            }
+        }
+        function checkIdDay(string) {
+            re = /^[0-9]{2}$/
+            if(re.test(string)){ 
+                alert("妳出生日驗證正確");
+            } else {  
+                alert("妳出生日驗證錯誤");
+            }
+        }
+        function checkIdEmail(string) {
+            re = /^[^\s]+@[^\s]+\.[^\s]{2,3}$/
+            if(re.test(string)){ 
+                alert("妳G-mail驗證正確");
+            } else {
+                alert("妳G-mail驗證錯誤");  
+            }
+        }
+
         function checkID(string){
             re = /^[A-Z]{1}[0-9]{9}$/
             // []　代表規則
@@ -25,13 +81,32 @@
             // ^ 輸入的第一個位置
             // $ 輸入的最後一個位置
             if(re.test(string)){ 
-            alert("妳身分證驗證驗證正確");
-        } else {  alert("妳身份證字號驗證錯誤");  
-        }
+                alert("妳身分證驗證驗證正確");
+            } else {
+                alert("妳身份證字號驗證錯誤");  
+            }
         }
     </script>
 
     <style>
+       .dunno{
+           position: fixed
+       }
+       .panda{
+           position: fixed;
+           top: 400px;
+           right: 100px;
+       }    
+       .cutie{
+           position: fixed;
+           right: 1000px;
+           top: 400px;
+       }
+       body{
+           color:blueviolet;
+           background-color: lavender;
+       }
+           
        h1{
            text-align: center;
        }
